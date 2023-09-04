@@ -15,7 +15,7 @@ way is to use a lookup table. One can be easily generated in python:
 PHRED_TO_SCORE_LOOKUP = [10 ** (-(i -33) / 10) for i in range (127)]
 ```
 
-Using [dnaio](https://github.com/marcelm/dnaio>) one can easily calculate
+Using [dnaio](https://github.com/marcelm/dnaio) one can easily calculate
 the average probability for each read:
 ```python3
 
