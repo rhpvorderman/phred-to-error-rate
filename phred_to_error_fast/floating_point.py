@@ -67,4 +67,4 @@ if __name__ == "__main__":
     errors = [10 ** (i / -10) for i in range(94)]
     doubles = [Double.from_float(e) for e in errors]
     for i, d in enumerate(doubles):
-        print(f"{i:2}\t{repr(d):80}{d.significand_fraction()}\t{bin(int(d))}")
+        print(f"{i:2}\t{d.exponent:6}\t{d.significand_fraction():20.20}\t{bin(int(d))}")
