@@ -66,5 +66,15 @@ class Double:
 if __name__ == "__main__":
     errors = [10 ** (i / -10) for i in range(94)]
     doubles = [Double.from_float(e) for e in errors]
-    for i, d in enumerate(doubles):
-        print(f"{i:2}\t{d.exponent:6}\t{d.significand_fraction():20.20}\t{bin(int(d))}")
+    for remainder in (0, 1, 2):
+        previous_significand = 0
+        previous_difference = 0
+        for i, d in enumerate(doubles):
+            if i%3!=remainder:
+                continue
+            significand = d.significand
+            difference = significand - previous_significand
+            previous_significand = significand
+            higher_order_difference = difference - previous_difference
+            previous_difference = difference
+            print(f"{i:2}\t{d.exponent:6}\t{d.significand:20}\t{difference:20}\t{higher_order_difference:20}\t{bin(int(d))}")
