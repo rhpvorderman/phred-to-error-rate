@@ -78,13 +78,3 @@ if __name__ == "__main__":
             higher_order_difference = difference - previous_difference
             previous_difference = difference
             print(f"{i:2}\t{d.exponent:6}\t{d.significand:20}\t{difference:20}\t{higher_order_difference:20}\t{bin(int(d))}")
-
-    for i in range(94):
-        x = i // 3
-        mod = i - (x * 3)
-        if mod != 0:
-            continue
-        d = Double(False, 1023 - x, 3564549947590 * i)
-        computed = float(d)
-        actual = 10 ** (-i / 10)
-        print(f"{i:2} {computed:20.8} {actual:20.8} {computed / actual}")
