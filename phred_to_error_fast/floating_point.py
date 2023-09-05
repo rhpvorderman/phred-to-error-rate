@@ -82,5 +82,9 @@ if __name__ == "__main__":
     for i in range(94):
         x = i // 3
         mod = i - (x * 3)
+        if mod != 0:
+            continue
         d = Double(False, 1023 - x, 3564549947590 * i)
-        print(i, float(d), 10 ** (-i / 10))
+        computed = float(d)
+        actual = 10 ** (-i / 10)
+        print(f"{i:2} {computed:20.8} {actual:20.8} {computed / actual}")
