@@ -1,18 +1,21 @@
 from floating_point import Double
 # For the significand there is a linear relation (y = ax + b) depending
 # on the modulo of the phred.
-a0 = 10693649842770 // 3
+phreds = [Double.from_float(10 ** (-i /10)) for i in range(94)]
+CENTER_PHRED = 30
+a0 = (phreds[CENTER_PHRED].significand - phreds[CENTER_PHRED - 3].significand + 2)  // 3
 b0 = 0
-a1 = 16988536004734 // 3
-b1 = 2651073056457780 -a1
-a2 = 13494473815191 // 3
-b2 = 1179558895604856 - 2 * a2
+a1 = (phreds[CENTER_PHRED + 1].significand - phreds[CENTER_PHRED - 2].significand + 2) // 3
+b1 = phreds[CENTER_PHRED + 1].significand - ((CENTER_PHRED + 1) * a1)
+a2 = (phreds[CENTER_PHRED + 2].significand - phreds[CENTER_PHRED - 1].significand + 2) // 3
+b2 = phreds[CENTER_PHRED + 2].significand - ((CENTER_PHRED + 2) * a2)
 
 a1_factor = a1 - a0
-a2_factor = ((a0 + a1_factor * 2) - a2) // 2
+a2_factor = (((a0 + a1_factor * 2) - a2) + 1) // 2
 b1_factor = b1 - b0
-b2_factor = ((b0 + b1_factor * 2) - b2) // 2
+b2_factor = (((b0 + b1_factor * 2) - b2) + 1) // 2
 
+print(a0, a1_factor, a2_factor, b0, b1_factor, b2_factor)
 
 for i in range(94):
     exp = (i + 2) // 3
